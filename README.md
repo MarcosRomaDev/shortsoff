@@ -12,10 +12,10 @@ Así que estoy haciendo la mía: lo bastante pequeña como para leerla en unos m
 
 ## Funcionalidades previstas
 
-- [ ] Ocultar el carrusel de Shorts en la página de inicio
-- [ ] Ocultar el enlace de Shorts en el sidebar
-- [ ] Ocultar Shorts en los resultados de búsqueda
-- [ ] Redirigir los enlaces `/shorts/*` a la vista normal de vídeo
+- [x] Ocultar el carrusel de Shorts en la página de inicio
+- [x] Ocultar el enlace de Shorts en el sidebar
+- [x] Ocultar Shorts en los resultados de búsqueda
+- [x] Redirigir los enlaces `/shorts/*` a la vista normal de vídeo
 - [ ] Popup con toggle para activar/desactivar
 
 ## Privacidad

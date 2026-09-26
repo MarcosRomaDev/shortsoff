@@ -9,7 +9,7 @@ function hideShortsGuideEntry() {
   });
 
   searchGridShelves.forEach((entry) => {
-    if (entry.textContent.includes("shorts")) {
+    if (entry.textContent.toLowerCase().includes("shorts")) {
       entry.style.setProperty("display", "none", "important");
     }
   });
@@ -25,3 +25,18 @@ observer.observe(document.documentElement, {
   childList: true,
   subtree: true,
 });
+
+// Redirecciona del formato short con scroll al visualizer de video normal.
+function redirectShortPage() {
+  const isShortPage = location.pathname.startsWith("/shorts/");
+
+  if (isShortPage) {
+    const shortId = location.pathname.split("/")[2];
+    const destinationUrl = location.origin + "/watch?v=" + shortId;
+    location.replace(destinationUrl);
+  }
+}
+
+document.addEventListener("yt-navigate-start", redirectShortPage);
+
+redirectShortPage();
