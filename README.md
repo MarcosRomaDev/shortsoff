@@ -2,7 +2,7 @@
 
 Extensión de Chrome que elimina los Shorts de YouTube en todas partes — permisos mínimos, sin peticiones de red, código totalmente auditable.
 
-> 🚧 **Estado: en desarrollo.** Se está construyendo la lógica de ocultado y el toggle on/off. Todavía no publicada en la Chrome Web Store.
+> ✅ **Estado: listo para revisión.** Funcionalidad completa (ocultado, redirección, popup con toggle). Pendiente solo publicar en Chrome Web Store.
 
 ## Por qué
 
