@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Privacy Policy — ShortsOff</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        max-width: 720px;
+        margin: 40px auto;
+        padding: 0 20px;
+        line-height: 1.6;
+        color: #1f1f1f;
+      }
+      h1 { font-size: 28px; }
+      h2 { font-size: 20px; margin-top: 32px; }
+      p, li { font-size: 16px; }
+      .updated { color: #606060; font-size: 14px; }
+      code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; }
+    </style>
+  </head>
+  <body>
+    <h1>Privacy Policy — ShortsOff</h1>
+    <p class="updated">Last updated: 28 September 2026</p>
+
+    <p>
+      ShortsOff is a Chrome extension that hides YouTube Shorts from the
+      YouTube interface and redirects <code>/shorts/*</code> links to the
+      standard watch view.
+    </p>
+
+    <h2>Data collection</h2>
+    <p>
+      <strong>ShortsOff does not collect, store, transmit, sell, or share any
+      user data.</strong>
+    </p>
+
+    <h2>What the extension does</h2>
+    <ul>
+      <li>
+        Identifies Shorts-related UI elements on <code>youtube.com</code> using
+        CSS selectors and DOM property checks, and hides them by setting their
+        CSS <code>display</code> property.
+      </li>
+      <li>
+        Detects when the user navigates to a <code>/shorts/*</code> URL and
+        redirects the page to the equivalent <code>/watch?v=</code> URL.
+      </li>
+      <li>
+        Reads and writes a single boolean value (the on/off state of the toggle)
+        in <code>chrome.storage.local</code>.
+      </li>
+    </ul>
+
+    <h2>Permissions</h2>
+    <ul>
+      <li>
+        <strong>storage</strong>: used only to persist the toggle state across
+        browser sessions.
+      </li>
+      <li>
+        <strong>youtube.com host permission</strong>: required to inject the
+        content script that hides Shorts elements and to detect
+        <code>/shorts/*</code> navigation.
+      </li>
+    </ul>
+
+    <h2>Data leaving your browser</h2>
+    <p>
+      None. The extension makes no outgoing network requests. No page content,
+      no URLs, no user activity is sent anywhere.
+    </p>
+
+    <h2>Source code and audit</h2>
+    <p>
+      The full source code is publicly available at the project repository.
+      Anyone can read it to verify these claims.
+    </p>
+
+    <h2>Changes to this policy</h2>
+    <p>
+      If this policy is updated, the change will be reflected here with a new
+      "Last updated" date.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Open an issue on the project repository for any privacy-related question.
+    </p>
+  </body>
+</html>
