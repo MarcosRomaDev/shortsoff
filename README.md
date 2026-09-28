@@ -37,3 +37,25 @@ Aún no publicada. Para probar el estado actual:
 ## Licencia
 
 MIT — ver [LICENSE](./LICENSE).
+
+## Limitaciones conocidas
+
+- **Selectores de YouTube**: la extensión depende de la estructura actual del DOM de YouTube. Si YouTube cambia sus selectores o atributos, hay que actualizarlos manualmente en `content.js`. Los puntos clave están comentados en el código.
+- **Almacenamiento local**: el estado del toggle se guarda en `chrome.storage.local`, que **no se sincroniza** entre dispositivos ni perfiles de Chrome. Para sincronizar habría que cambiar a `chrome.storage.sync`, que tiene límites más bajos de cuota.
+- **Primera carga con toggle en OFF**: si instalas la extensión, apagas el toggle y recargas una pestaña abierta de YouTube, los Shorts se mostrarán brevemente hasta que el `MutationObserver` complete la primera pasada. Imperceptible en la práctica.
+- **Sin service worker**: la extensión no tiene background script. Si YouTube bloquea las pestañas inactivas agresivamente (lo que puede pasar en pestañas en segundo plano), los listeners de mensajes pueden tardar más en responder.
+
+## Procedimiento de prueba manual
+
+Lista reproducible de casos a probar tras cualquier cambio:
+
+1. Cargar la extensión desde `chrome://extensions` (modo desarrollador).
+2. Abrir `youtube.com/shorts/<id>` con el toggle en ON → debe redirigir a `/watch?v=<id>`.
+3. Abrir `youtube.com/shorts/<id>` con el toggle en OFF → debe quedarse en formato Short.
+4. Con toggle OFF, abrir Short y luego activar el toggle → debe redirigir al reproductor normal.
+5. Click en un Short desde la portada → debe redirigir.
+6. Click en un Short desde resultados de búsqueda → debe redirigir.
+7. Botón "Atrás" tras una redirección desde Short → debe volver a la página anterior, no al Short.
+8. Cerrar Chrome, reabrir, abrir popup → el estado del switch debe persistir.
+9. Recarga completa (F5) de cualquier página de YouTube → el comportamiento del toggle se mantiene.
+10. Apagar el toggle: los Shorts visibles desaparecen en menos de un segundo; encenderlo: vuelven a aparecer.
