@@ -16,7 +16,7 @@ Así que estoy haciendo la mía: lo bastante pequeña como para leerla en unos m
 - [x] Ocultar el enlace de Shorts en el sidebar
 - [x] Ocultar Shorts en los resultados de búsqueda
 - [x] Redirigir los enlaces `/shorts/*` a la vista normal de vídeo
-- [ ] Popup con toggle para activar/desactivar
+- [x] Popup con toggle para activar/desactivar
 
 ## Privacidad
 

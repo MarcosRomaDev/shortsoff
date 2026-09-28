@@ -3,16 +3,19 @@
   "name": "ShortsOff - YouTube Shorts Blocker",
   "version": "0.1.0",
   "description": "Oculta los Shorts de YouTube sin peticiones de red.",
+  "permissions": [
+    "storage"
+  ],
   "host_permissions": [
     "*://*.youtube.com/*"
   ],
+  "action": {
+    "default_popup": "popup.html"
+  },
   "content_scripts": [
     {
       "matches": [
         "*://*.youtube.com/*"
-      ],
-      "css": [
-        "content.css"
       ],
       "js": [
         "content.js"

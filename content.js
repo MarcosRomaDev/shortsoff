@@ -1,33 +1,54 @@
-function hideShortsGuideEntry() {
-  const guideEntries = document.querySelectorAll("ytd-guide-entry-renderer");
-  const searchGridShelves = document.querySelectorAll("grid-shelf-view-model");
+let isEnabled = true;
 
-  guideEntries.forEach((entry) => {
+chrome.storage.local.get({ enabled: true }, (result) => {
+  isEnabled = result.enabled;
+});
+
+chrome.runtime.onMessage.addListener((message) => {
+  if (!message || message.type !== "enabled") return;
+
+  isEnabled = message.value;
+  setShortsHidden(isEnabled);
+
+  if (isEnabled) {
+    redirectShortPage();
+  }
+});
+
+function setShortsHidden(hidden) {
+  const apply = hidden
+    ? (el) => el.style.setProperty("display", "none", "important")
+    : (el) => el.style.removeProperty("display");
+
+  document
+    .querySelectorAll('ytd-rich-shelf-renderer:has(a[href^="/shorts/"])')
+    .forEach(apply);
+
+  document.querySelectorAll("ytd-guide-entry-renderer").forEach((entry) => {
     if (entry.textContent.includes("Shorts")) {
-      entry.style.setProperty("display", "none", "important");
+      apply(entry);
     }
   });
 
-  searchGridShelves.forEach((entry) => {
+  document.querySelectorAll("grid-shelf-view-model").forEach((entry) => {
     if (entry.textContent.toLowerCase().includes("shorts")) {
-      entry.style.setProperty("display", "none", "important");
+      apply(entry);
     }
   });
 }
 
-// Oculta las entradas y secciones de Shorts que ya existen en la página.
-hideShortsGuideEntry();
+setShortsHidden(isEnabled);
 
-// YouTube añade contenido dinámicamente porque funciona como una SPA.
-const observer = new MutationObserver(hideShortsGuideEntry);
+const observer = new MutationObserver(() => setShortsHidden(isEnabled));
 
 observer.observe(document.documentElement, {
   childList: true,
   subtree: true,
 });
 
-// Redirecciona del formato short con scroll al visualizer de video normal.
 function redirectShortPage() {
+  if (!isEnabled) return;
+
   const isShortPage = location.pathname.startsWith("/shorts/");
 
   if (isShortPage) {
